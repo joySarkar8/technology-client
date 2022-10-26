@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -12,9 +11,12 @@ const Header = () => {
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse className='justify-content-end' id="responsive-navbar-nav">
-                    <Nav>
-                        <Link to="/courses" className='text-decoration-none me-5 text-white'>Courses</Link>
-                        <Link className='text-decoration-none text-white'>FAQ</Link>
+                    <Nav className='align-items-center'>
+                        <Link to="/" className='text-decoration-none me-4 text-white'>Home</Link>
+                        <Link to="/courses" className='text-decoration-none me-4 text-white'>Courses</Link>
+                        <Link to="/courses" className='text-decoration-none me-4 text-white'>Blog</Link>
+                        <Link className='text-decoration-none text-white me-4'>FAQ</Link>
+                        <Link to="/login" className='text-decoration-none text-white btn btn-primary'>LOGIN</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container> 

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
 const CourseDetails = () => {
     const courseDetail = useLoaderData();
-    const {course_name, image_url, id} = courseDetail;
+    const {course_name, image_url} = courseDetail;
 
     return (
         <Card className='p-4'>
