@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -8,17 +8,29 @@ const Login = () => {
     const { providerLogin } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
+
+    const handleGithubSignIn = () => {
+        providerLogin(gitProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => {
-            console.error(error);
-        })
-        
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
     }
 
     return (
@@ -35,7 +47,7 @@ const Login = () => {
             </form>
             <hr className='mb-4' />
             <button onClick={handleGoogleSignIn} className='btn btn-danger shadow mb-3' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GOOGLE</button>
-            <button className='btn btn-dark shadow mb-4' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GITHUB</button>
+            <button onClick={handleGithubSignIn} className='btn btn-dark shadow mb-4' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GITHUB</button>
             <p>New member? <Link to='/register'>Register</Link> here.</p>
         </div>
     );

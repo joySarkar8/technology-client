@@ -8,9 +8,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
-    console.log(user?.displayName);
+    const { user, logOut } = useContext(AuthContext);
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
 
     return (
@@ -24,20 +28,21 @@ const Header = () => {
                         <Link to="/courses" className='text-decoration-none me-4 text-white'>Courses</Link>
                         <Link to="/courses" className='text-decoration-none me-4 text-white'>Blog</Link>
                         <Link className='text-decoration-none text-white me-4'>FAQ</Link>
-                        
 
-                        <Link className='me-4'>
-                            {user?.photoURL ?
 
-                                <Image data-toggle="tooltip" data-placement="top" title={user?.displayName} style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
-                                :
-                                <p>joy</p>
-                            }
-                        </Link>
+
+                        {
+                            user?.photoURL &&
+
+                            <Link className='me-4'><Image data-toggle="tooltip" data-placement="top" title={user?.displayName} style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image></Link>
+
+                        }
+
+
 
                         {
                             user?.uid ?
-                                <Link to="/login" className='text-decoration-none text-white btn btn-primary'>LOGOUT</Link>
+                                <Link onClick={handleLogOut} to="/login" className='text-decoration-none text-white btn btn-primary'>LOGOUT</Link>
                                 :
                                 <Link to="/login" className='text-decoration-none text-white btn btn-primary'>LOGIN</Link>
                         }
