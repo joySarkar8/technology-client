@@ -1,12 +1,12 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
 const CourseDetails = () => {
     const courseDetail = useLoaderData();
-    const {course_name, image_url} = courseDetail;
+    const {course_name, image_url, id} = courseDetail;
 
     return (
         <Card className='p-4'>
@@ -17,8 +17,7 @@ const CourseDetails = () => {
                     Some quick example text to build on the card title and make up the
                     bulk of the card's content.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-                
+                <Link className='btn btn-primary' to={`/checkout/${id}`}>Get Premium Access</Link>
             </Card.Body>
         </Card>
     );
