@@ -13,7 +13,7 @@ const Courses = () => {
 
 
     return (
-        <div>
+        <div className='d-flex justify-content-center flex-wrap' style={{gap: "31px"}}>
             {
                 coursesData.map(courseData => <CoursesCard
                     key={courseData.id}
