@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 
 const CoursesCard = ({ courseData }) => {
 
-    const { course_name, image_url, id } = courseData;
+    const { course_name, image_url, id, details } = courseData;
    
 
    
@@ -14,8 +14,17 @@ const CoursesCard = ({ courseData }) => {
             <Card.Body>
                 <Card.Title>{course_name}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                {
+                        details.length > 250
+
+                            ?
+
+                            <>{details.slice(0, 100) + '...'}</>
+                            
+                            :
+
+                            details
+                    }
                 </Card.Text>
                 <Link className='btn btn-primary w-100' to={`/courses/${id}`}>View Details</Link>
             </Card.Body>

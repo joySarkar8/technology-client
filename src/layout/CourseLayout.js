@@ -5,7 +5,7 @@ import LeftSideNav from '../components/LeftSideNav/LeftSideNav';
 
 const CourseLayout = () => {
     return (
-        <Container>
+        <Container style={{minHeight: '1000px'}}>
             <Row>
                 <Col lg="2">
                     <LeftSideNav></LeftSideNav>

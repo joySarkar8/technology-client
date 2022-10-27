@@ -13,10 +13,12 @@ const AuthProvider = ({ children }) => {
     const [loader, setLoader] = useState(true)
 
     const providerLogin = (provider) => {
+        setLoader(true)
         return signInWithPopup(auth, provider);
     }
 
     const createUser = (email, password) => {
+        setLoader(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -25,6 +27,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserProfile = (profile) => {
+        setLoader(true)
         return updateProfile(auth.currentUser, profile)
     }
 
@@ -36,6 +39,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log('auth state changed', currentUser);
             setUser(currentUser)
+            
             setLoader(false)
         });
         return () => {

@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { DarkModeContext } from '../../../contexts/DarkMode/DarkMode';
 
@@ -14,7 +15,9 @@ const Header = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => { 
+                toast.success('Successfully Log Out complete!')
+            })
             .catch(error => console.error(error))
     }
 
@@ -36,7 +39,7 @@ const Header = () => {
                         {
                             user?.photoURL &&
 
-                            <NavLink className='me-4'><Image data-toggle="tooltip" data-placement="top" title={user?.displayName} style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image></NavLink>
+                            <NavLink className='me-4'><Image data-toggle="tooltip" data-placement="top" title={user?.displayName} style={{ height: '40px', width: '40px' }} roundedCircle src={user?.photoURL}></Image></NavLink>
 
                         }
 

@@ -7,7 +7,7 @@ import CoursesCard from '../CoursesCard/CoursesCard';
 const Courses = () => {
 
     const coursesData = useLoaderData();
-    console.log(coursesData);
+    
 
 
     return (
@@ -23,9 +23,3 @@ const Courses = () => {
 };
 
 export default Courses;
-
-
-
-
-
-

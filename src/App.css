@@ -1,3 +1,6 @@
+.height{
+  min-height: 1000px;
+}
 .dark-mode {
   background-color: #1a1919;
   color: black;

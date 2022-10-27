@@ -1,36 +1,36 @@
-import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { DarkModeContext } from '../../contexts/DarkMode/DarkMode';
 
 const CheckOut = () => {
 
+    const { darkMode } = useContext(DarkModeContext);
     const courseDetail = useLoaderData();
-    const { course_name, image_url, price } = courseDetail;
+    const { course_name, image_url, price, details } = courseDetail;
     console.log(courseDetail);
     return (
-        <div className='container'>
-            <h2 className='text-center'>
+        <div className='container vh-100'>
+            <h2 className={darkMode ? "text-light text-center" : "text-center text-dark"}>
                 Review Your Order & Complete Checkout
             </h2>
-            <hr />
+            <hr className={darkMode ? "text-light text-center" : "text-center text-dark"} />
             <Link className="btn btn-info" style={{ width: "100%" }}>Add More Products & Services</Link>
-            <hr />
+            <hr className={darkMode ? "text-light text-center mb-5" : "text-center text-dark mb-5"} />
 
             <Card className='mx-auto' style={{ width: '18rem' }}>
                 <Card.Img style={{ width: '100%', height: "186px" }} variant="top" src={image_url} />
                 <Card.Body>
                     <Card.Title>{course_name}</Card.Title>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        {details}
                     </Card.Text>
                     <div className='d-flex justify-content-between'>
                         <h5>Price:</h5>
                         <h5>{price}$</h5>
                     </div>
-                    <Button className='w-100' variant="primary">Go somewhere</Button>
+                    <Button className='w-100' variant="primary">Purchase</Button>
                 </Card.Body>
 
                 <Link>

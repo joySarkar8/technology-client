@@ -1,6 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
@@ -16,9 +17,10 @@ const Register = () => {
         providerLogin(gitProvider)
             .then(() => {
                 navigate('/')
+                toast.success('Github Login Successfull!')
             })
-            .catch(error => {
-                console.error(error);
+            .catch(e => {
+                toast.error(e.message)
             })
     }
 
@@ -26,9 +28,10 @@ const Register = () => {
         providerLogin(googleProvider)
             .then(() => {
                 navigate('/')
+                toast.success('Google Login Successfull!')
             })
-            .catch(error => {
-                console.error(error);
+            .catch(e => {
+                toast.error(e.message)
             })
 
     }
@@ -49,9 +52,10 @@ const Register = () => {
             form.reset();
             handleUpdateProfile(name, photoURL)
             navigate('/')
+            toast.success('Create Account Successfull!')
         })
-        .catch(error => {
-            console.error(error);
+        .catch(e => {
+            toast.error(e.message)
         })
     }
 
@@ -59,7 +63,7 @@ const Register = () => {
         const profile = {displayName: name, photoURL: photoURL}
         updateUserProfile(profile)
         .then(() => {})
-        .catch(e => console.error(e))
+        .catch(e => toast.error(e.message))
     }
     
     return (

@@ -1,10 +1,12 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
 
+    const [error, setError] = useState('')
     const { providerLogin, signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -19,9 +21,10 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 user && navigate(from, { replace: true })
+                toast.success('Github Login Successfull!')
             })
-            .catch(error => {
-                console.error(error);
+            .catch(e => {
+                toast.error(e.message);
             })
     }
 
@@ -30,9 +33,10 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 user && navigate(from, { replace: true })
+                toast.success('Google Login Successfull!')
             })
-            .catch(error => {
-                console.error(error);
+            .catch(e => {
+                toast.error(e.message);
             })
 
     }
@@ -49,15 +53,17 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 form.reset();
+                setError('');
                 
                 user && navigate(from, { replace: true })
+                
             })
             .catch(e => {
-                console.error(e)
+                setError(e.message)
             })
             
     }
-
+    console.log(error);
     return (
         <div className='mx-auto border rounded-4 mt-3 bg-white text-center' style={{ width: '500px', padding: '48px' }}>
             <h4 className='text-center mb-4'>Log In</h4>
@@ -73,6 +79,7 @@ const Login = () => {
             <hr className='mb-4' />
             <button onClick={handleGoogleSignIn} className='btn btn-danger shadow mb-3' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GOOGLE</button>
             <button onClick={handleGithubSignIn} className='btn btn-dark shadow mb-4' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GITHUB</button>
+            <p className='text-danger'>{error}</p>
             <p>New member? <Link to='/register'>Register</Link> here.</p>
         </div>
     );

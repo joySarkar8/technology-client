@@ -7,7 +7,7 @@ import { routes } from './Routes/Routes/Routes';
 function App() {
   const {darkMode} = useContext(DarkModeContext)
   return (
-    <div className={darkMode ? "dark-mode" : "light-mode"}>
+    <div className={darkMode ? "dark-mode height" : "light-mode height"}>
       <RouterProvider router={routes}></RouterProvider>
     </div>
   );
