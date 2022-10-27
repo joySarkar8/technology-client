@@ -15,7 +15,7 @@ const CoursesCard = ({ courseData }) => {
                 <Card.Title>{course_name}</Card.Title>
                 <Card.Text>
                 {
-                        details.length > 250
+                        details.length > 100
 
                             ?
 

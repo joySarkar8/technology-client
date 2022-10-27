@@ -34,12 +34,12 @@ export const routes = createBrowserRouter([
                     {
                         path: '/courses',
                         element: <Courses></Courses>,
-                        loader: () => fetch('http://localhost:5000/courses'),
+                        loader: () => fetch('https://technology-beta.vercel.app/courses'),
                     },
                     {
                         path: '/courses/:id',
                         element: <CourseDetails></CourseDetails>,
-                        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`),
+                        loader: ({params}) => fetch(`https://technology-beta.vercel.app/courses/${params.id}`),
                     },
                 ]
             },
@@ -54,7 +54,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({params}) => fetch(`https://technology-beta.vercel.app/courses/${params.id}`)
             },
             {
                 path: '/faq',
@@ -63,7 +63,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>,
-                loader : () => fetch('http://localhost:5000/blog')
+                loader : () => fetch('https://technology-beta.vercel.app/blog')
             },
         ]
     }
