@@ -1,11 +1,15 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
 
-    const { providerLogin } = useContext(AuthContext);
+    const { providerLogin, signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
@@ -14,7 +18,7 @@ const Login = () => {
         providerLogin(gitProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                user && navigate(from, { replace: true })
             })
             .catch(error => {
                 console.error(error);
@@ -25,7 +29,7 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                user && navigate(from, { replace: true })
             })
             .catch(error => {
                 console.error(error);
@@ -33,10 +37,31 @@ const Login = () => {
 
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email, password);
+
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                form.reset();
+                
+                user && navigate(from, { replace: true })
+            })
+            .catch(e => {
+                console.error(e)
+            })
+            
+    }
+
     return (
         <div className='mx-auto border rounded-4 mt-3 bg-white text-center' style={{ width: '500px', padding: '48px' }}>
             <h4 className='text-center mb-4'>Log In</h4>
-            <form className='mb-4'>
+            <form onSubmit={handleSubmit} className='mb-4'>
                 <div className='mb-3' >
                     <input style={{ outline: 'none', width: '400px', padding: '7px 16px' }} type="eamil" id='email' placeholder='Email' />
                 </div>
@@ -54,31 +79,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <div style={{ width: '30%', padding: '0 0 0 16px' }}>
-                    <Link className='btn btn-primary d-block'>LOGIN</Link>
-                    <p className='m-0 '><span>or, login with</span></p>
-                    <Link className='btn btn-primary d-block mb-3'>Github</Link>
-                    <Link className='btn btn-primary d-block'>Google</Link>
-                </div> */}

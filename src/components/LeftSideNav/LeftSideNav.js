@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const LeftSideNav = () => {
     const [courses, setCourses] = useState([]);
@@ -18,9 +18,9 @@ const LeftSideNav = () => {
             {
                 courses.map(coursesName => <p
                     key={coursesName.id}>
-                    <Link to={`/courses/${coursesName.id}`}>
+                    <NavLink className='btn btn-primary shadow w-100' to={`/courses/${coursesName.id}`}>
                         {coursesName.course_name}
-                    </Link>
+                    </NavLink>
                 </p>)
             }
         </div>
