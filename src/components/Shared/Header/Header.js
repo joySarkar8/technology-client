@@ -28,8 +28,8 @@ const Header = () => {
                     <Nav className='align-items-center'>
                         <NavLink to="/" className='text-decoration-none me-4 text-white'>Home</NavLink>
                         <NavLink to="/courses" className='text-decoration-none me-4 text-white'>Courses</NavLink>
-                        <NavLink to="/courses" className='text-decoration-none me-4 text-white'>Blog</NavLink>
-                        <NavLink className='text-decoration-none text-white me-4'>FAQ</NavLink>
+                        <NavLink to="/blog" className='text-decoration-none me-4 text-white'>Blog</NavLink>
+                        <NavLink to="/faq" className='text-decoration-none text-white me-4'>FAQ</NavLink>
 
 
 
