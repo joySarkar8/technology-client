@@ -87,7 +87,7 @@ const Register = () => {
             <hr className='mb-4' />
             <button onClick={handleGoogleSignIn} className='btn btn-danger shadow mb-3' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GOOGLE</button>
             <button onClick={handleGithubSignIn} className='btn btn-dark shadow mb-4' style={{ width: '400px', padding: '8px 16px' }}>SIGN IN WITH GITHUB</button>
-            <p>New member? <Link to='/register'>Register</Link> here.</p>
+            <p>New member? <Link to='/login'>Login</Link> here.</p>
         </div>
     );
 };
